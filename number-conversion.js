@@ -36,7 +36,7 @@ function signIn() {
         document.getElementById('password').value = null;
         Swal.fire({
             icon: "success",
-            text: "loged in!"
+            text: "signed in!"
         });
         signedIn = true;
         setInterval(() => {
