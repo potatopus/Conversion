@@ -1,0 +1,178 @@
+body {
+    background-image: linear-gradient(to right top, #08090c, #0c0d12, #0f1117, #11141b,
+            #13171f, #161b25, #19202a, #1c2430, #222b39, #283142, #2e384b, #343f54);
+    background-attachment: fixed;
+}
+
+#signout {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    z-index: 1;
+    border-radius: 5px;
+    padding: 5px;
+    width: max-content;
+    height: max-content;
+    color: #ADB5BD;
+    display: none;
+    border: solid 1px #ADB5BD;
+    background: #6c757d6b;
+    backdrop-filter: blur(5px);
+}
+
+#signin #signinForm {
+    backdrop-filter: blur(5px);
+    background-color: #6c757d7c;
+    padding: 20px 30px 50px;
+    width: 300px;
+    margin-top: 50px;
+    border-radius: 10px;
+    color: #ADB5BD;
+}
+
+#signin #signinForm h2 {
+    text-align: center;
+    margin: 30px;
+}
+
+#signin input {
+    border: none;
+    border-bottom: solid 2px #ADB5BD;
+    background-color: #ADB5BD;
+    height: 30px;
+}
+
+#signin #forgotpasswordButton {
+    background-color: transparent;
+    border: none;
+    display: block;
+    position: absolute;
+    padding-top: 2px;
+    right: 34px;
+    font-size: small;
+    color: #979DAC;
+    font-size: 12px;
+    font-style: italic;
+}
+
+#signin #signinButton {
+    border: solid 1px #ADB5BD;
+    border-radius: 20px;
+    background-color: #CED4DA;
+    padding: 4px 26px;
+    display: block;
+    margin: auto;
+    margin-top: 50px;
+    width: 170px;
+}
+
+#signin #signupButton {
+    border: none;
+    background-color: transparent;
+    padding: 4px 26px;
+    display: block;
+    margin: auto;
+    margin-top: 4px;
+    font-size: small;
+    color: #979DAC;
+}
+
+#signup #signupForm {
+    backdrop-filter: blur(5px);
+    background-color: #6c757d7c;
+    padding: 20px 30px 50px;
+    width: 300px;
+    margin-top: 50px;
+    border-radius: 10px;
+    color: #ADB5BD;
+}
+
+#signup #signupForm h2 {
+    text-align: center;
+    margin: 30px;
+}
+
+#signup input {
+    border: none;
+    border-bottom: solid 2px #ADB5BD;
+    background-color: #ADB5BD;
+    height: 30px;
+}
+
+#signup #signupButton {
+    border: solid 1px #ADB5BD;
+    border-radius: 20px;
+    background-color: #CED4DA;
+    padding: 4px 26px;
+    display: block;
+    margin: auto;
+    margin-top: 50px;
+    width: 170px;
+}
+
+#signup #signinButton {
+    border: none;
+    background-color: transparent;
+    padding: 4px 26px;
+    display: block;
+    margin: auto;
+    margin-top: 4px;
+    font-size: small;
+    color: #979DAC;
+}
+
+#converter .container {
+    position: relative;
+    background-color: #16191d;
+    width: max-content;
+    height: fit-content;
+    border-start-start-radius: 12px;
+    border-start-end-radius: 12px;
+    border-end-start-radius: 8px;
+    border-end-end-radius: 8px;
+    margin: auto;
+    border-style: ridge;
+    border-width: 1px;
+    border-color: rgb(66, 66, 66);
+}
+
+.group {
+    font-style: oblique;
+    font-weight: 900;
+    font-size: large;
+    color: rgb(190, 190, 190);
+}
+
+#numberInput {
+    font-size: 20px;
+    color: whitesmoke;
+    text-align: right;
+    width: 98%;
+    height: 26px;
+    margin: 0;
+    outline: none;
+    border-radius: 10px;
+    background-color: #000000;
+}
+
+#converter button {
+    width: 60px;
+    height: 60px;
+    margin: 2px 1px;
+    border: 0;
+    border-radius: 20%;
+    background-color: #495057;
+    color: #F8F9FA;
+}
+
+button:enabled:active {
+    background: linear-gradient(225deg, #333333ad, #1d1d1da9, #131313a8, #000000ab);
+}
+
+.button:disabled {
+    opacity: 30%;
+}
+
+.hexButton:disabled {
+    opacity: 30%;
+}
