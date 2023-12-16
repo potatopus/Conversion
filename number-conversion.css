@@ -42,6 +42,20 @@ body {
     height: 30px;
 }
 
+#signin #showpassword {
+    display: block;
+    position: absolute;
+    margin-top: -3px;
+}
+
+#signin #showpasswordText {
+    display: block;
+    position: absolute;
+    left: 44px;
+    margin-top: 2px;
+    font-size: small;
+}
+
 #signin #forgotpasswordButton {
     background-color: transparent;
     border: none;
@@ -72,7 +86,7 @@ body {
     padding: 4px 26px;
     display: block;
     margin: auto;
-    margin-top: 4px;
+    margin-top: 10px;
     font-size: small;
     color: #979DAC;
 }
@@ -99,6 +113,20 @@ body {
     height: 30px;
 }
 
+#signup #showpassword1 {
+    display: block;
+    position: absolute;
+    margin-top: -3px;
+}
+
+#signup #showpasswordText {
+    display: block;
+    position: absolute;
+    left: 44px;
+    margin-top: 2px;
+    font-size: small;
+}
+
 #signup #signupButton {
     border: solid 1px #ADB5BD;
     border-radius: 20px;
@@ -116,7 +144,7 @@ body {
     padding: 4px 26px;
     display: block;
     margin: auto;
-    margin-top: 4px;
+    margin-top: 10px;
     font-size: small;
     color: #979DAC;
 }

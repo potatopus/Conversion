@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="number-conversion.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <title>Number Conversion</title>
+</head>
+
+<body>
+    <button onclick="signout()" id="signout">sign out</button>
+
+    <!-- Singin -->
+    <section id="signin">
+        <div class="container" id="signinForm">
+            <h2>SIGN IN</h2>
+            <!-- Username -->
+            <label for="username" class="form-label mb-0">username</label>
+            <input type="text" name="username" class="form-control mb-2" id="username">
+
+            <!-- Password -->
+            <label for="password" class="form-label mb-0">password</label>
+            <input type="password" name="password" class="form-control" id="password">
+
+            <input type="checkbox" id="showpassword" onclick="showpassword()">
+            <p id="showpasswordText">show password</p>
+
+            <button id="forgotpasswordButton">forgot password</button>
+
+            <button onclick="signIn()" id="signinButton">
+                SIGN IN
+            </button>
+
+            <button onclick="signupButton()" id="signupButton">
+                don't have an account? <span style="color: cyan;">Sign Up</span>
+            </button>
+        </div>
+    </section>
+
+    <!-- Signup -->
+    <section id="signup" style="display: none;">
+        <div class="container" id="signupForm">
+            <h2>SIGN UP</h2>
+            <!-- Username -->
+            <label for="username" class="form-label mb-0"><span style="color: red;">
+                    *</span>username</label>
+            <input type="text" name="username" class="form-control mb-2" id="username1">
+
+            <!-- Password -->
+            <label for="password" class="form-label mb-0"><span style="color: red;">
+                    *</span>password</label>
+            <input type="password" name="password" class="form-control mb-2" id="password1">
+
+            <!-- Confirm password -->
+            <label for="confirmpassword" class="form-label mb-0"><span style="color: red;">
+                    *</span>confirm password</label>
+            <input type="password" name="confirmpassword" class="form-control" id="confirmpassword">
+
+            <input type="checkbox" id="showpassword1" onclick="showpassword1()">
+            <p id="showpasswordText">show password</p>
+
+            <button onclick="signupUser()" id="signupButton">
+                SIGN UP
+            </button>
+
+            <button onclick="signinButton()" id="signinButton">
+                already have account? <span style="color: cyan;">Sign In</span>
+            </button>
+        </div>
+    </section>
+
+    <!-- Number Conversion -->
+    <section id="converter" style="display: none;">
+        <div class="container" style="margin-top: 1cm; margin-bottom: 2cm; 
+        padding: 15px; width: max-content;">
+            <div class="group" id="group">
+                NUMBER CONVERSION
+            </div>
+            <div class="container" style="width: 90%; margin: auto; overflow: hidden;
+            padding: 10px; color: #F8F9FA; background-color: black;">
+                <p id="numberInput"></p>
+                <p id="conversion1" style="padding: 0; margin: 0;">
+                    BIN
+                </p>
+                <div id="result1" style="position: absolute; right: 0; top: 36px; width: 80%;">
+                </div>
+                <p id="conversion2" style="padding: 0; margin: 0;">
+                    OCT
+                </p>
+                <div id="result2" style="position: absolute; right: 0; top: 54px; width: 80%;">
+                </div>
+                <p id="conversion3" style="padding: 0; margin: 0;">
+                    HEX
+                </p>
+                <div id="result3" style="position: absolute; right: 0; top: 72px; width: 80%;">
+                </div>
+            </div>
+            <div class="container" style="width: max-content; border: 0; margin-top: 14px;">
+                <button type="button" onclick="bin()" id="baseButtonBin">BIN</button>
+                <button type="button" onclick="dec()" id="baseButtonDec" style="color: #aff6ff;
+                    text-shadow: 0 0 6px #F8F9FA;" disabled>DEC</button>
+                <button type="button" onclick="oct()" id="baseButtonOct">OCT</button>
+                <button type="button" onclick="hex()" id="baseButtonHex">HEX</button><br>
+                <button type="button" onclick="hexA()" id="hexButton10" class="hexButton">A</button>
+                <button type="button" onclick="hexB()" id="hexButton11" class="hexButton">B</button>
+                <button type="button" onclick="hexC()" id="hexButton12" class="hexButton">C</button>
+                <button type="button" onclick="del()" id="functionButton">
+                    <i class="fa-solid fa-delete-left" style="color: rgba(245, 245, 245, 0.6);"></i></button><br>
+                <button type="button" onclick="numSeven()" id="button7" class="button">7</button>
+                <button type="button" onclick="numEight()" id="button8" class="button">8</button>
+                <button type="button" onclick="numNine()" id="button9" class="button">9</button>
+                <button type="button" onclick="clr()" id="functionButton">
+                    <i class="fa-solid fa-c" style="color: rgba(255, 0, 0, 0.6);"></i>
+                </button><br>
+                <button type="button" onclick="numFour()" id="button4" class="button">4</button>
+                <button type="button" onclick="numFive()" id="button5" class="button">5</button>
+                <button type="button" onclick="numSix()" id="button6" class="button">6</button>
+                <button type="button" onclick="hexD()" id="hexButton13" class="hexButton">D</button><br>
+                <button type="button" onclick="numOne()" id="button1" class="button">1</button>
+                <button type="button" onclick="numTwo()" id="button2" class="button">2</button>
+                <button type="button" onclick="numThree()" id="button3" class="button">3</button>
+                <button type="button" onclick="hexE()" id="hexButton14" class="hexButton">E</button><br>
+                <button type="button" onclick="numZero()" id="button0" class="button"
+                    style="width: 192px; border-radius: 10px;">0</button>
+                <button type="button" onclick="hexF()" id="hexButton15" class="hexButton">F</button>
+            </div>
+    </section>
+
+    <script src="number-conversion.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</body>
+
+</html>

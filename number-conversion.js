@@ -1,23 +1,124 @@
-let users = [];
-let passwords = [];
+let users = ['admin'];
+let passwords = ['adminpass'];
 let input = 'valid';
 let signedIn = false;
 
 function signinButton() {
-    document.getElementById('signin').style.display = 'block';
-    document.getElementById('signup').style.display = 'none';
+    var password = document.getElementById("password1");
+    var confirmpassword = document.getElementById("confirmpassword");
+    let timerInterval;
+    Swal.fire({
+        timer: 600,
+        background: 'transparent',
+        allowOutsideClick: false,
+        didOpen: () => {
+            Swal.showLoading();
+        },
+        willClose: () => {
+            clearInterval(timerInterval);
+        }
+    }).then(() => {
+        document.getElementById('signin').style.display = 'block';
+        document.getElementById('signup').style.display = 'none';
+        document.getElementById('username').value = null;
+        document.getElementById('password').value = null;
+        document.getElementById('showpassword1').checked = false;
+        confirmpassword.type = "password";
+        password.type = "password";
+    })
 }
 
 function signupButton() {
-    document.getElementById('signin').style.display = 'none';
-    document.getElementById('signup').style.display = 'block';
+    var password = document.getElementById("password");
+    let timerInterval;
+    Swal.fire({
+        timer: 600,
+        background: 'transparent',
+        allowOutsideClick: false,
+        didOpen: () => {
+            Swal.showLoading();
+        },
+        willClose: () => {
+            clearInterval(timerInterval);
+        }
+    }).then(() => {
+        document.getElementById('signin').style.display = 'none';
+        document.getElementById('signup').style.display = 'block';
+        document.getElementById('username1').value = null;
+        document.getElementById('password1').value = null;
+        document.getElementById('confirmpassword').value = null;
+        document.getElementById('showpassword').checked = false;
+        password.type = "password";
+    })
+}
+
+function showpassword() {
+    var x = document.getElementById("password");
+    if (x.type === "password") {
+        x.type = "text";
+    } else {
+        x.type = "password";
+    }
+}
+
+function showpassword1() {
+    var password = document.getElementById("password1");
+    var confirmpassword = document.getElementById("confirmpassword");
+    if (password.type === "password") {
+        password.type = "text";
+        confirmpassword.type = "text";
+    } else {
+        confirmpassword.type = "password";
+        password.type = "password";
+    }
 }
 
 function signout() {
-    document.getElementById('signin').style.display = 'block';
-    document.getElementById('signout').style.display = 'none';
-    document.getElementById('converter').style.display = 'none';
-    signedIn = false;
+    base = 'dec';
+    document.getElementById('baseButtonBin').style.color = '#ADB5BD';
+    document.getElementById('baseButtonBin').style.textShadow = 'none';
+    document.getElementById('baseButtonDec').style.color = '#aff6ff';
+    document.getElementById('baseButtonDec').style.textShadow = '0 0 6px #F8F9FA';
+    document.getElementById('baseButtonOct').style.color = '#ADB5BD';
+    document.getElementById('baseButtonOct').style.textShadow = 'none';
+    document.getElementById('baseButtonHex').style.color = '#ADB5BD';
+    document.getElementById('baseButtonHex').style.textShadow = 'none';
+    for (let i = 0; i < 10; i++) {
+        let buttonId = 'button' + i;
+        document.getElementById(buttonId).disabled = false;
+    }
+    for (let i = 10; i < 16; i++) {
+        let buttonId = 'hexButton' + i;
+        document.getElementById(buttonId).disabled = true;
+    }
+    numberInput.innerHTML = '';
+    document.getElementById('baseButtonBin').disabled = false;
+    document.getElementById('baseButtonDec').disabled = true;
+    document.getElementById('baseButtonOct').disabled = false;
+    document.getElementById('baseButtonHex').disabled = false;
+
+    /*CHANGE BASE*/
+    document.getElementById('conversion1').innerHTML = 'BIN';
+    document.getElementById('conversion2').innerHTML = 'OCT';
+    document.getElementById('conversion3').innerHTML = 'HEX';
+
+    let timerInterval;
+    Swal.fire({
+        timer: 600,
+        background: 'transparent',
+        allowOutsideClick: false,
+        didOpen: () => {
+            Swal.showLoading();
+        },
+        willClose: () => {
+            clearInterval(timerInterval);
+        }
+    }).then(() => {
+        document.getElementById('signin').style.display = 'block';
+        document.getElementById('signout').style.display = 'none';
+        document.getElementById('converter').style.display = 'none';
+        signedIn = false;
+    })
 }
 
 function signIn() {
@@ -32,27 +133,40 @@ function signIn() {
     }
 
     if (userConfirmed) {
+        var passwordShow = document.getElementById("password");
         document.getElementById('username').value = null;
         document.getElementById('password').value = null;
-        Swal.fire({
-            icon: "success",
-            text: "signed in!"
-        });
         signedIn = true;
-        setInterval(() => {
-            if (signedIn == true) {
-                document.getElementById('signin').style.display = 'none';
-                document.getElementById('signup').style.display = 'none';
-                document.getElementById('converter').style.display = 'block';
-                document.getElementById('signout').style.display = 'block';
+        let timerInterval;
+        Swal.fire({
+            icon: 'success',
+            title: "successfully signed in",
+            timer: 1000,
+            color: 'white',
+            background: 'grey',
+            didOpen: () => {
+                Swal.showLoading();
+            },
+            willClose: () => {
+                clearInterval(timerInterval);
+                if (signedIn == true) {
+                    document.getElementById('signin').style.display = 'none';
+                    document.getElementById('signup').style.display = 'none';
+                    document.getElementById('converter').style.display = 'block';
+                    document.getElementById('signout').style.display = 'block';
+                    document.getElementById('showpassword').checked = false;
+                    passwordShow.type = "password";
+                }
             }
-        }, 1000)
+        })
     }
     else {
         Swal.fire({
             icon: "error",
             title: "oops...",
-            text: "wrong username and/or password"
+            text: "wrong username and/or password",
+            color: 'white',
+            background: 'grey'
         });
     }
 }
@@ -78,35 +192,45 @@ function signupUser() {
         Swal.fire({
             icon: "error",
             title: "SIGN UP FAILED!",
-            text: "enter username and password"
+            text: "enter username and password",
+            color: 'white',
+            background: 'grey'
         });
     }
     else if (input == 'user invalid') {
         Swal.fire({
             icon: "error",
             title: "INVALID INPUT!",
-            text: "username can not contain SPACES"
+            text: "username can not contain SPACES",
+            color: 'white',
+            background: 'grey'
         });
     }
     else if (input == 'password invalid') {
         Swal.fire({
             icon: "error",
             title: "INVALID INPUT!",
-            text: "password can not contain SPACES"
+            text: "password can not contain SPACES",
+            color: 'white',
+            background: 'grey'
         });
     }
     else if (password != confirmpassword) {
         Swal.fire({
             icon: 'error',
             title: 'SIGN UP FAILED!',
-            text: 'password doesn\'t match'
+            text: 'password doesn\'t match',
+            color: 'white',
+            background: 'grey'
         })
     }
     else {
         Swal.fire({
             icon: 'success',
             title: 'SIGN UP SUCCESFUL!',
-            text: 'successfully signed up user'
+            text: 'successfully signed up user',
+            color: 'white',
+            background: 'grey'
         })
         users.push(username);
         passwords.push(password);
