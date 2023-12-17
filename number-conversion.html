@@ -15,7 +15,7 @@
     <button onclick="signout()" id="signout">sign out</button>
 
     <!-- Singin -->
-    <section id="signin">
+    <section id="signin" style="display: block;">
         <div class="container" id="signinForm">
             <h2>SIGN IN</h2>
             <!-- Username -->
@@ -29,7 +29,7 @@
             <input type="checkbox" id="showpassword" onclick="showpassword()">
             <p id="showpasswordText">show password</p>
 
-            <button id="forgotpasswordButton">forgot password</button>
+            <button onclick="forgotpassword()" id="forgotpasswordButton">forgot password</button>
 
             <button onclick="signIn()" id="signinButton">
                 SIGN IN
@@ -68,7 +68,33 @@
             </button>
 
             <button onclick="signinButton()" id="signinButton">
-                already have account? <span style="color: cyan;">Sign In</span>
+                already have an account? <span style="color: cyan;">Sign In</span>
+            </button>
+        </div>
+    </section>
+
+    <section id="forgotpassword" style="display: none;">
+        <div class="container" id="forgotpasswordForm">
+            <h2>FORGOT PASSWORD</h2>
+            <!-- Password -->
+            <label for="password2" class="form-label mb-0"><span style="color: red;">
+                    *</span>new password</label>
+            <input type="password" name="password" class="form-control mb-2" id="password2">
+
+            <!-- Confirm password -->
+            <label for="confirmpassword" class="form-label mb-0"><span style="color: red;">
+                    *</span>confirm password</label>
+            <input type="password" name="confirmpassword" class="form-control" id="confirmpassword1">
+
+            <input type="checkbox" id="showpassword2" onclick="showpassword2()">
+            <p id="showpasswordText1">show password</p>
+
+            <button onclick="changepassword()" id="changepassword">
+                SEND
+            </button>
+
+            <button onclick="signinButton()" id="signinButton">
+                back to <span style="color: cyan;">Sign In</span>
             </button>
         </div>
     </section>
@@ -83,20 +109,20 @@
             <div class="container" style="width: 90%; margin: auto; overflow: hidden;
             padding: 10px; color: #F8F9FA; background-color: black;">
                 <p id="numberInput"></p>
-                <p id="conversion1" style="padding: 0; margin: 0;">
+                <p id="conversion1" style="padding: 0; margin: 0; height: 20px;">
                     BIN
                 </p>
-                <div id="result1" style="position: absolute; right: 0; top: 36px; width: 80%;">
-                </div>
-                <p id="conversion2" style="padding: 0; margin: 0;">
+                <span id="result1" style="position: absolute; right: 0; top: 36px; width: 80%;">
+                </span>
+                <p id="conversion2" style="padding: 0; margin: 0; height: 20px;">
                     OCT
                 </p>
-                <div id="result2" style="position: absolute; right: 0; top: 54px; width: 80%;">
+                <div id="result2" style="position: absolute; right: 0; top: 56px; width: 80%;">
                 </div>
-                <p id="conversion3" style="padding: 0; margin: 0;">
+                <p id="conversion3" style="padding: 0; margin: 0; height: 20px;">
                     HEX
                 </p>
-                <div id="result3" style="position: absolute; right: 0; top: 72px; width: 80%;">
+                <div id="result3" style="position: absolute; right: 0; top: 76px; width: 80%;">
                 </div>
             </div>
             <div class="container" style="width: max-content; border: 0; margin-top: 14px;">

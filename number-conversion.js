@@ -2,10 +2,13 @@ let users = ['admin'];
 let passwords = ['adminpass'];
 let input = 'valid';
 let signedIn = false;
+let userForgotpassword;
 
 function signinButton() {
     var password = document.getElementById("password1");
     var confirmpassword = document.getElementById("confirmpassword");
+    var password1 = document.getElementById("password2");
+    var confirmpassword1 = document.getElementById("confirmpassword1");
     let timerInterval;
     Swal.fire({
         timer: 600,
@@ -20,11 +23,17 @@ function signinButton() {
     }).then(() => {
         document.getElementById('signin').style.display = 'block';
         document.getElementById('signup').style.display = 'none';
+        document.getElementById('forgotpassword').style.display = 'none';
         document.getElementById('username').value = null;
         document.getElementById('password').value = null;
         document.getElementById('showpassword1').checked = false;
         confirmpassword.type = "password";
         password.type = "password";
+        password1.value = null;
+        confirmpassword1.value = null;
+        document.getElementById('showpassword2').checked = false;
+        confirmpassword1.type = "password";
+        password1.type = "password";
     })
 }
 
@@ -71,6 +80,134 @@ function showpassword1() {
         confirmpassword.type = "password";
         password.type = "password";
     }
+}
+
+/* Forgot password */
+function forgotpassword() {
+    Swal.fire({
+        title: "Input username",
+        text: "type your username",
+        input: 'text',
+        showCancelButton: true,
+        background: 'grey',
+        color: 'whitesmoke'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            if (users.includes(result.value)) {
+                userForgotpassword = users.indexOf(result.value);
+                let timerInterval;
+                Swal.fire({
+                    timer: 600,
+                    background: 'transparent',
+                    allowOutsideClick: false,
+                    didOpen: () => {
+                        Swal.showLoading();
+                    },
+                    willClose: () => {
+                        clearInterval(timerInterval);
+                    }
+                }).then(() => {
+                    console.log('username found');
+                    document.getElementById('showpassword').checked = false;
+                    document.getElementById("password").type = 'password';
+                    document.getElementById('username').value = null;
+                    document.getElementById('password').value = null;
+                    document.getElementById('signin').style.display = 'none';
+                    document.getElementById('forgotpassword').style.display = 'block';
+                })
+            }
+            else {
+                let timerInterval;
+                Swal.fire({
+                    timer: 600,
+                    background: 'transparent',
+                    allowOutsideClick: false,
+                    didOpen: () => {
+                        Swal.showLoading();
+                    },
+                    willClose: () => {
+                        clearInterval(timerInterval);
+                    }
+                }).then(() => {
+                    Swal.fire({
+                        title: "Username not found",
+                        background: 'grey',
+                        color: 'whitesmoke'
+                    })
+                });
+                console.log('username not found');
+            }
+        }
+    });
+}
+
+function showpassword2() {
+    var password = document.getElementById("password2");
+    var confirmpassword = document.getElementById("confirmpassword1");
+    if (password.type === "password") {
+        password.type = "text";
+        confirmpassword.type = "text";
+    } else {
+        confirmpassword.type = "password";
+        password.type = "password";
+    }
+}
+
+/* Change password */
+function changepassword() {
+    let password = document.getElementById('password2').value;
+    let confirmpassword = document.getElementById('confirmpassword1').value;
+
+    for (let inp of password) {
+        if (inp == " ") {
+            input = 'password invalid';
+        }
+    }
+
+    if (password == '') {
+        Swal.fire({
+            icon: "error",
+            title: "PASSWORD CHANGE FAILED!",
+            text: "enter password",
+            color: 'white',
+            background: 'grey'
+        });
+    }
+    
+    else if (input == 'password invalid') {
+        Swal.fire({
+            icon: "error",
+            title: "INVALID INPUT!",
+            text: "password can not contain SPACES",
+            color: 'white',
+            background: 'grey'
+        });
+    }
+
+    else if (password != confirmpassword) {
+        Swal.fire({
+            icon: 'error',
+            title: 'PASSWORD CHANGE FAILED!',
+            text: 'password doesn\'t match',
+            color: 'white',
+            background: 'grey'
+        })
+    }
+    
+    else {
+        Swal.fire({
+            icon: 'success',
+            title: 'PASSWORD CHANGE SUCCESFUL!',
+            text: 'successfully changed password',
+            color: 'white',
+            background: 'grey'
+        })
+        passwords[userForgotpassword] = password;
+        document.getElementById('password2').value = null;
+        document.getElementById('confirmpassword1').value = null;
+    }
+    input = 'valid';
+    console.log(userForgotpassword);
 }
 
 function signout() {

@@ -4,6 +4,7 @@ body {
     background-attachment: fixed;
 }
 
+/* Signout CSS */
 #signout {
     position: fixed;
     top: 10px;
@@ -20,6 +21,7 @@ body {
     backdrop-filter: blur(5px);
 }
 
+/* Signin CSS */
 #signin #signinForm {
     backdrop-filter: blur(5px);
     background-color: #6c757d7c;
@@ -51,8 +53,8 @@ body {
 #signin #showpasswordText {
     display: block;
     position: absolute;
-    left: 44px;
-    margin-top: 2px;
+    left: 46px;
+    margin-top: 3px;
     font-size: small;
 }
 
@@ -91,6 +93,7 @@ body {
     color: #979DAC;
 }
 
+/* Signup CSS */
 #signup #signupForm {
     backdrop-filter: blur(5px);
     background-color: #6c757d7c;
@@ -149,6 +152,66 @@ body {
     color: #979DAC;
 }
 
+/* Forgotpassword CSS */
+#forgotpassword #forgotpasswordForm {
+    backdrop-filter: blur(5px);
+    background-color: #6c757d7c;
+    padding: 20px 30px 50px;
+    width: 300px;
+    margin-top: 50px;
+    border-radius: 10px;
+    color: #ADB5BD;
+}
+
+#forgotpassword #forgotpasswordForm h2 {
+    text-align: center;
+    margin: 30px;
+}
+
+#forgotpassword input {
+    border: none;
+    border-bottom: solid 2px #ADB5BD;
+    background-color: #ADB5BD;
+    height: 30px;
+}
+
+#forgotpassword #changepassword {
+    border: solid 1px #ADB5BD;
+    border-radius: 20px;
+    background-color: #CED4DA;
+    padding: 4px 26px;
+    display: block;
+    margin: auto;
+    margin-top: 50px;
+    width: 170px;
+}
+
+#forgotpassword #signinButton {
+    border: none;
+    background-color: transparent;
+    padding: 4px 26px;
+    display: block;
+    margin: auto;
+    margin-top: 10px;
+    font-size: small;
+    color: #979DAC;
+}
+
+#forgotpassword #showpassword2 {
+    display: block;
+    position: absolute;
+    margin-top: -3px;
+}
+
+#forgotpassword #showpasswordText1 {
+    display: block;
+    position: absolute;
+    left: 46px;
+    margin-top: 3px;
+    font-size: small;
+}
+
+/* Converter CSS */
 #converter .container {
     position: relative;
     background-color: #16191d;
