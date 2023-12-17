@@ -82,7 +82,7 @@ function showpassword1() {
     }
 }
 
-/* Forgot password */
+// Forgot password
 function forgotpassword() {
     Swal.fire({
         title: "Input username",
@@ -153,7 +153,7 @@ function showpassword2() {
     }
 }
 
-/* Change password */
+// Change password
 function changepassword() {
     let password = document.getElementById('password2').value;
     let confirmpassword = document.getElementById('confirmpassword1').value;
@@ -173,7 +173,7 @@ function changepassword() {
             background: 'grey'
         });
     }
-    
+
     else if (input == 'password invalid') {
         Swal.fire({
             icon: "error",
@@ -193,7 +193,7 @@ function changepassword() {
             background: 'grey'
         })
     }
-    
+
     else {
         Swal.fire({
             icon: 'success',
@@ -210,35 +210,9 @@ function changepassword() {
     console.log(userForgotpassword);
 }
 
+
+// Signout
 function signout() {
-    base = 'dec';
-    document.getElementById('baseButtonBin').style.color = '#ADB5BD';
-    document.getElementById('baseButtonBin').style.textShadow = 'none';
-    document.getElementById('baseButtonDec').style.color = '#aff6ff';
-    document.getElementById('baseButtonDec').style.textShadow = '0 0 6px #F8F9FA';
-    document.getElementById('baseButtonOct').style.color = '#ADB5BD';
-    document.getElementById('baseButtonOct').style.textShadow = 'none';
-    document.getElementById('baseButtonHex').style.color = '#ADB5BD';
-    document.getElementById('baseButtonHex').style.textShadow = 'none';
-    for (let i = 0; i < 10; i++) {
-        let buttonId = 'button' + i;
-        document.getElementById(buttonId).disabled = false;
-    }
-    for (let i = 10; i < 16; i++) {
-        let buttonId = 'hexButton' + i;
-        document.getElementById(buttonId).disabled = true;
-    }
-    numberInput.innerHTML = '';
-    document.getElementById('baseButtonBin').disabled = false;
-    document.getElementById('baseButtonDec').disabled = true;
-    document.getElementById('baseButtonOct').disabled = false;
-    document.getElementById('baseButtonHex').disabled = false;
-
-    /*CHANGE BASE*/
-    document.getElementById('conversion1').innerHTML = 'BIN';
-    document.getElementById('conversion2').innerHTML = 'OCT';
-    document.getElementById('conversion3').innerHTML = 'HEX';
-
     let timerInterval;
     Swal.fire({
         timer: 600,
@@ -251,6 +225,39 @@ function signout() {
             clearInterval(timerInterval);
         }
     }).then(() => {
+        base = 'dec';
+        document.getElementById('baseButtonBin').style.color = '#ADB5BD';
+        document.getElementById('baseButtonBin').style.textShadow = 'none';
+        document.getElementById('baseButtonBin').style.border = 'none';
+        document.getElementById('baseButtonDec').style.color = '#aff6ff';
+        document.getElementById('baseButtonDec').style.textShadow = '0 0 6px #F8F9FA';
+        document.getElementById('baseButtonDec').style.border = 'solid 1px #aff6ff';
+        document.getElementById('baseButtonOct').style.color = '#ADB5BD';
+        document.getElementById('baseButtonOct').style.textShadow = 'none';
+        document.getElementById('baseButtonOct').style.border = 'none';
+        document.getElementById('baseButtonHex').style.color = '#ADB5BD';
+        document.getElementById('baseButtonHex').style.textShadow = 'none';
+        document.getElementById('baseButtonHex').style.border = 'none';
+        for (let i = 0; i < 10; i++) {
+            let buttonId = 'button' + i;
+            document.getElementById(buttonId).disabled = false;
+        }
+        for (let i = 10; i < 16; i++) {
+            let buttonId = 'hexButton' + i;
+            document.getElementById(buttonId).disabled = true;
+        }
+        numberInput.innerHTML = '';
+        document.getElementById('baseButtonBin').disabled = false;
+        document.getElementById('baseButtonDec').disabled = true;
+        document.getElementById('baseButtonOct').disabled = false;
+        document.getElementById('baseButtonHex').disabled = false;
+
+        //CHANGE BASE
+        document.getElementById('conversion1').innerHTML = 'BIN';
+        document.getElementById('conversion2').innerHTML = 'OCT';
+        document.getElementById('conversion3').innerHTML = 'HEX';
+
+        //DISPLAY SIGIN
         document.getElementById('signin').style.display = 'block';
         document.getElementById('signout').style.display = 'none';
         document.getElementById('converter').style.display = 'none';
@@ -258,6 +265,8 @@ function signout() {
     })
 }
 
+
+// Signin
 function signIn() {
     let username = document.getElementById('username').value;
     let password = document.getElementById('password').value;
@@ -308,6 +317,8 @@ function signIn() {
     }
 }
 
+
+// Signup
 function signupUser() {
     let username = document.getElementById('username1').value;
     let password = document.getElementById('password1').value;
@@ -378,9 +389,9 @@ function signupUser() {
     input = 'valid';
 }
 
-/*CONVERSION JAVASCRIPT*/
 
-var base = 'dec';
+// CONVERSION JAVASCRIPT
+var base = 'dec'; //default base
 
 for (let i = 10; i < 16; i++) {
     let buttonId = 'hexButton' + i;
@@ -394,22 +405,34 @@ setInterval(() => {
     let numberInput3 = document.getElementById('numberInput').innerHTML;
 
     if (base === 'bin') {
-        /*REVERSE THE BINARY FOR CONVERSION*/
+        //REVERSE THE BINARY FOR CONVERSION
         var revBin = '';
         for (let i = numberInput1.length - 1; i >= 0; i--) {
             revBin += numberInput1[i];
         }
 
-        /*CONVERSION TO DEC*/
-        var dec = 0;
+        //CONVERSION TO DEC
+        var dec;
+        if (numberInput == '') {
+            dec = '';
+        }
+        else {
+            dec = 0;
+        }
         for (let i = 0; i < revBin.length; i++) {
             dec += revBin[i] * (2 ** i);
         }
         result1.innerHTML = dec;
 
-        /*CONVERSION TO OCTAL*/
+        //CONVERSION TO OCTAL
         var oct = "";
-        var toOct = 0;
+        var toOct;
+        if (numberInput == '') {
+            toOct = '';
+        }
+        else {
+            toOct = 0;
+        }
         var digits = 1;
         for (let i = 0; i < revBin.length; i++) {
             if (digits > 4) {
@@ -424,9 +447,15 @@ setInterval(() => {
         }
         result2.innerHTML = toOct + oct;
 
-        /*CONVERSION TO HEX*/
+        //CONVERSION TO HEX
         var hex = "";
-        var toHex = 0;
+        var toHe;
+        if (numberInput == '') {
+            toHex = '';
+        }
+        else {
+            toHex = 0;
+        }
         var digits = 1;
         for (let i = 0; i < revBin.length; i++) {
             if (digits > 8) {
@@ -466,7 +495,7 @@ setInterval(() => {
     }
 
     else if (base === 'dec') {
-        /*CONVERSION TO BIN*/
+        //CONVERSION TO BIN
         var binary = "";
         while (numberInput1 != 0) {
             quotient = Math.floor(numberInput1 / 2);
@@ -476,7 +505,7 @@ setInterval(() => {
         }
         result1.innerHTML = binary;
 
-        /*CONVERSION TO OCT*/
+        //CONVERSION TO OCT
         var octal = "";
         while (numberInput2 != 0) {
             quotient = Math.floor(numberInput2 / 8);
@@ -486,7 +515,7 @@ setInterval(() => {
         }
         result2.innerHTML = octal;
 
-        /*CONVERSION TO HEX*/
+        //CONVERSION TO HEX
         var hexa = "";
         while (numberInput3 != 0) {
             quotient = Math.floor(numberInput3 / 16);
@@ -521,13 +550,13 @@ setInterval(() => {
     }
 
     else if (base === 'oct') {
-        /*REVERSE THE OCTAL FOR CONVERSION*/
+        //REVERSE THE OCTAL FOR CONVERSION
         var revOct = '';
         for (let i = numberInput.length - 1; i >= 0; i--) {
             revOct += numberInput[i];
         }
 
-        /*CONVERSION TO BIN*/
+        //CONVERSION TO BIN
         var bin = "";
         for (let i = 0; i < numberInput.length; i++) {
             let val = numberInput[i];
@@ -558,14 +587,20 @@ setInterval(() => {
         }
         result1.innerHTML = bin;
 
-        /*CONVERSION TO DEC*/
-        var dec = 0;
+        //ONVERSION TO DEC
+        var dec;
+        if (numberInput == '') {
+            dec = '';
+        }
+        else {
+            dec = 0;
+        }
         for (let i = 0; i < revOct.length; i++) {
             dec += revOct[i] * (8 ** i);
         }
         result2.innerHTML = dec;
 
-        /*CONVERSION TO HEX*/
+        //CONVERSION TO HEX
         // first convert to binary
         var toBin = "";
         for (let i = 0; i < numberInput.length; i++) {
@@ -597,7 +632,13 @@ setInterval(() => {
         }
         // then from binary to hexadecimal
         var hex = "";
-        var toHex = 0;
+        var toHex;
+        if (numberInput == '') {
+            toHex = '';
+        }
+        else {
+            toHex = 0;
+        }
         var digits = 1;
         for (let i = toBin.length - 1; i >= 0; i--) {
             if (digits > 8) {
@@ -637,13 +678,13 @@ setInterval(() => {
     }
 
     else if (base === 'hex') {
-        /*REVERSE THE HEX FOR CONVERSION*/
+        //REVERSE THE HEX FOR CONVERSION
         var revHex = '';
         for (let i = numberInput.length - 1; i >= 0; i--) {
             revHex += numberInput[i];
         }
 
-        /*CONVERSION TO BIN*/
+        //CONVERSION TO BIN
         var bin = "";
         for (let i = 0; i < numberInput.length; i++) {
             let val = numberInput[i];
@@ -698,8 +739,14 @@ setInterval(() => {
         }
         result1.innerHTML = bin;
 
-        /*CONVERSION TO DEC*/
-        var dec = 0;
+        //CONVERSION TO DEC
+        var dec;
+        if (numberInput == '') {
+            dec = '';
+        }
+        else {
+            dec = 0;
+        }
         for (let i = 0; i < revHex.length; i++) {
             var val = revHex[i];
             switch (val) {
@@ -735,7 +782,7 @@ setInterval(() => {
         }
         result2.innerHTML = dec;
 
-        /*CONVERSION TO OCT*/
+        //CONVERSION TO OCT
         // first convert to binary
         var toBin = "";
         for (let i = 0; i < numberInput.length; i++) {
@@ -791,7 +838,13 @@ setInterval(() => {
         }
         // then convert the binary to octal
         var oct = "";
-        var toOct = 0;
+        var toOct;
+        if (numberInput == '') {
+            toOct = '';
+        }
+        else {
+            toOct = 0;
+        }
         var digits = 1;
         for (let i = toBin.length - 1; i >= 0; i--) {
             if (digits > 4) {
@@ -887,11 +940,15 @@ function bin() {
     base = 'bin';
     document.getElementById('baseButtonBin').style.color = '#aff6ff';
     document.getElementById('baseButtonBin').style.textShadow = '0 0 6px #F8F9FA';
+    document.getElementById('baseButtonBin').style.border = 'solid 1px #aff6ff80';
     document.getElementById('baseButtonDec').style.color = '#ADB5BD';
     document.getElementById('baseButtonDec').style.textShadow = 'none';
+    document.getElementById('baseButtonDec').style.border = 'none';
     document.getElementById('baseButtonOct').style.color = '#ADB5BD';
+    document.getElementById('baseButtonOct').style.border = 'none';
     document.getElementById('baseButtonOct').style.textShadow = 'none';
     document.getElementById('baseButtonHex').style.color = '#ADB5BD';
+    document.getElementById('baseButtonHex').style.border = 'none';
     document.getElementById('baseButtonHex').style.textShadow = 'none';
     for (let i = 2; i < 10; i++) {
         let buttonId = 'button' + i;
@@ -907,7 +964,7 @@ function bin() {
     document.getElementById('baseButtonOct').disabled = false;
     document.getElementById('baseButtonHex').disabled = false;
 
-    /*CHANGE BASE*/
+    //CHANGE BASE
     document.getElementById('conversion1').innerHTML = 'DEC';
     document.getElementById('conversion2').innerHTML = 'OCT';
     document.getElementById('conversion3').innerHTML = 'HEX';
@@ -917,12 +974,16 @@ function dec() {
     base = 'dec';
     document.getElementById('baseButtonBin').style.color = '#ADB5BD';
     document.getElementById('baseButtonBin').style.textShadow = 'none';
+    document.getElementById('baseButtonBin').style.border = 'none';
     document.getElementById('baseButtonDec').style.color = '#aff6ff';
     document.getElementById('baseButtonDec').style.textShadow = '0 0 6px #F8F9FA';
+    document.getElementById('baseButtonDec').style.border = 'solid 1px #aff6ff80';
     document.getElementById('baseButtonOct').style.color = '#ADB5BD';
     document.getElementById('baseButtonOct').style.textShadow = 'none';
+    document.getElementById('baseButtonOct').style.border = 'none';
     document.getElementById('baseButtonHex').style.color = '#ADB5BD';
     document.getElementById('baseButtonHex').style.textShadow = 'none';
+    document.getElementById('baseButtonHex').style.border = 'none';
     for (let i = 0; i < 10; i++) {
         let buttonId = 'button' + i;
         document.getElementById(buttonId).disabled = false;
@@ -937,7 +998,7 @@ function dec() {
     document.getElementById('baseButtonOct').disabled = false;
     document.getElementById('baseButtonHex').disabled = false;
 
-    /*CHANGE BASE*/
+    //CHANGE BASE
     document.getElementById('conversion1').innerHTML = 'BIN';
     document.getElementById('conversion2').innerHTML = 'OCT';
     document.getElementById('conversion3').innerHTML = 'HEX';
@@ -947,12 +1008,16 @@ function oct() {
     base = 'oct';
     document.getElementById('baseButtonBin').style.color = '#ADB5BD';
     document.getElementById('baseButtonBin').style.textShadow = 'none';
+    document.getElementById('baseButtonBin').style.border = 'none';
     document.getElementById('baseButtonDec').style.color = '#ADB5BD';
     document.getElementById('baseButtonDec').style.textShadow = 'none';
+    document.getElementById('baseButtonDec').style.border = 'none';
     document.getElementById('baseButtonOct').style.color = '#aff6ff';
     document.getElementById('baseButtonOct').style.textShadow = '0 0 6px #F8F9FA';
+    document.getElementById('baseButtonOct').style.border = 'solid 1px #aff6ff80';
     document.getElementById('baseButtonHex').style.color = '#ADB5BD';
     document.getElementById('baseButtonHex').style.textShadow = 'none';
+    document.getElementById('baseButtonHex').style.border = 'none';
     for (let i = 0; i < 8; i++) {
         let buttonId = 'button' + i;
         document.getElementById(buttonId).disabled = false;
@@ -971,7 +1036,7 @@ function oct() {
     document.getElementById('baseButtonOct').disabled = true;
     document.getElementById('baseButtonHex').disabled = false;
 
-    /*CHANGE BASE*/
+    //CHANGE BASE
     document.getElementById('conversion1').innerHTML = 'BIN';
     document.getElementById('conversion2').innerHTML = 'DEC';
     document.getElementById('conversion3').innerHTML = 'HEX';
@@ -981,12 +1046,16 @@ function hex() {
     base = 'hex';
     document.getElementById('baseButtonBin').style.color = '#ADB5BD';
     document.getElementById('baseButtonBin').style.textShadow = 'none';
+    document.getElementById('baseButtonBin').style.border = 'none';
     document.getElementById('baseButtonDec').style.color = '#ADB5BD';
     document.getElementById('baseButtonDec').style.textShadow = 'none';
+    document.getElementById('baseButtonDec').style.border = 'none';
     document.getElementById('baseButtonOct').style.color = '#ADB5BD';
     document.getElementById('baseButtonOct').style.textShadow = 'none';
+    document.getElementById('baseButtonOct').style.border = 'none';
     document.getElementById('baseButtonHex').style.color = '#aff6ff';
     document.getElementById('baseButtonHex').style.textShadow = '0 0 6px #F8F9FA';
+    document.getElementById('baseButtonHex').style.border = 'solid 1px #aff6ff80';
     for (let i = 0; i < 10; i++) {
         let buttonId = 'button' + i;
         document.getElementById(buttonId).disabled = false;
@@ -1001,7 +1070,7 @@ function hex() {
     document.getElementById('baseButtonOct').disabled = false;
     document.getElementById('baseButtonHex').disabled = true;
 
-    /*CHANGE BASE*/
+    //CHANGE BASE
     document.getElementById('conversion1').innerHTML = 'BIN';
     document.getElementById('conversion2').innerHTML = 'DEC';
     document.getElementById('conversion3').innerHTML = 'OCT';
