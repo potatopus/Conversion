@@ -320,6 +320,7 @@ function signIn() {
 
 // Signup
 function signupUser() {
+    let alreadyInUse = false;
     let username = document.getElementById('username1').value;
     let password = document.getElementById('password1').value;
     let confirmpassword = document.getElementById('confirmpassword').value;
@@ -336,11 +337,26 @@ function signupUser() {
         }
     }
 
+    for (let user of users) {
+        if (username === user){
+            alreadyInUse = true;
+        }
+    }
+
     if (username == '' || password == '') {
         Swal.fire({
             icon: "error",
             title: "SIGN UP FAILED!",
             text: "enter username and password",
+            color: 'white',
+            background: 'grey'
+        });
+    }
+    else if (alreadyInUse){
+        Swal.fire({
+            icon: "error",
+            title: "USERNAME ALREADY IN USE!",
+            text: "choose another username",
             color: 'white',
             background: 'grey'
         });
