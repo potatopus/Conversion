@@ -352,7 +352,7 @@ function signupUser() {
             background: 'grey'
         });
     }
-    else if (alreadyInUse){
+    if (alreadyInUse){
         Swal.fire({
             icon: "error",
             title: "USERNAME ALREADY IN USE!",
